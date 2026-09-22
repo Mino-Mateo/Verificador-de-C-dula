@@ -7,6 +7,7 @@ const NOMBRES: Record<string, string> = {
   EC: 'Ecuador',
   CL: 'Chile',
   MX: 'México',
+  BR: 'Brasil',
 }
 
 function App() {

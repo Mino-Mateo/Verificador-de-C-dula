@@ -9,7 +9,7 @@ def test_listar_paises():
     response = client.get("/api/paises")
     assert response.status_code == 200
     paises = response.json()
-    assert set(paises) == {"EC", "CL", "MX"}
+    assert set(paises) == {"EC", "CL", "MX", "BR"}
 
 
 def test_validar_cedula_ecuatoriana_valida():
