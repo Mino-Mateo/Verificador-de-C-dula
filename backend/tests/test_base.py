@@ -8,5 +8,5 @@ def test_resultado_validacion_construye_correctamente():
     assert r.mensaje == "ok"
 
 
-def test_registro_vacio_al_inicio():
-    assert REGISTRO == {}
+def test_registro_contiene_ecuador():
+    assert "EC" in REGISTRO
