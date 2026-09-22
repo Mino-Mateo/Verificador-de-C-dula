@@ -4,12 +4,12 @@ from .base import ResultadoValidacion
 
 FORMATO = re.compile(
     r"^[A-Z]{4}"          # 4 letras (nombre)
-    r"\d{6}"               # fecha AAMMDD
+    r"[0-9]{6}"            # fecha AAMMDD
     r"[HM]"                # sexo
     r"[A-Z]{2}"            # entidad
     r"[BCDFGHJKLMNPQRSTVWXYZ]{3}"  # 3 consonantes internas
     r"[A-Z0-9]"            # diferenciador
-    r"\d$"                 # dígito verificador
+    r"[0-9]$"              # dígito verificador
 )
 
 TABLA_VALORES = "0123456789ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"

@@ -31,3 +31,10 @@ def test_formato_invalido_sexo_incorrecto():
     r = validar("GOMJ900101XDFMTR01")
     assert r.valido is False
     assert "Formato inválido" in r.mensaje
+
+
+def test_formato_invalido_digitos_unicode():
+    # fullwidth digits U+FF10-FF19 should be rejected, not cause ValueError
+    r = validar("GOMJ９００101HDFMTR01")
+    assert r.valido is False
+    assert "Formato inválido" in r.mensaje
