@@ -8,7 +8,7 @@ COEFICIENTES = [2, 1, 2, 1, 2, 1, 2, 1, 2]
 def validar(valor: str) -> ResultadoValidacion:
     valor = valor.strip()
 
-    if not re.fullmatch(r"\d{10}", valor):
+    if not re.fullmatch(r"[0-9]{10}", valor):
         return ResultadoValidacion(False, "Formato inválido: debe tener 10 dígitos numéricos")
 
     provincia = int(valor[0:2])

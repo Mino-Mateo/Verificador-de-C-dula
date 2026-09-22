@@ -24,3 +24,10 @@ def test_formato_invalido_cuerpo_corto():
     r = validar("123-5")
     assert r.valido is False
     assert "Formato inválido" in r.mensaje
+
+
+def test_formato_invalido_digitos_unicode():
+    # fullwidth digits should be rejected, not accepted as valid
+    r = validar("１２３４５６７８-5")
+    assert r.valido is False
+    assert "Formato inválido" in r.mensaje

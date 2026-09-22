@@ -8,7 +8,7 @@ PESOS = [2, 3, 4, 5, 6, 7]
 def validar(valor: str) -> ResultadoValidacion:
     valor = valor.strip().upper().replace(".", "")
 
-    match = re.fullmatch(r"(\d{7,8})-([0-9K])", valor)
+    match = re.fullmatch(r"([0-9]{7,8})-([0-9K])", valor)
     if not match:
         return ResultadoValidacion(False, "Formato inválido: use NNNNNNNN-V")
 

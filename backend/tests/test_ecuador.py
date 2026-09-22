@@ -30,3 +30,10 @@ def test_provincia_invalida():
     r = validar("9912345675")
     assert r.valido is False
     assert "provincia" in r.mensaje.lower()
+
+
+def test_formato_invalido_digitos_unicode():
+    # fullwidth digits U+FF11... should be rejected, not accepted as valid
+    r = validar("１７１２３４５６７５")
+    assert r.valido is False
+    assert "Formato inválido" in r.mensaje

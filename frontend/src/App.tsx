@@ -16,23 +16,29 @@ function App() {
   const [resultado, setResultado] = useState<ValidateResponse | null>(null)
 
   useEffect(() => {
-    listarPaises().then((lista) => {
-      setPaises(lista)
-      if (lista.length > 0) setPais(lista[0])
-    })
+    listarPaises()
+      .then((lista) => {
+        setPaises(lista)
+        if (lista.length > 0) setPais(lista[0])
+      })
+      .catch(() => setPaises([]))
   }, [])
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault()
-    const r = await validar(pais, valorInput)
-    setResultado(r)
+    try {
+      const r = await validar(pais, valorInput)
+      setResultado(r)
+    } catch {
+      setResultado({ error: 'No se pudo conectar con el servidor' })
+    }
   }
 
   return (
     <div className="container">
       <h1>Verificador de Cédula</h1>
       <form onSubmit={handleSubmit}>
-        <select value={pais} onChange={(e) => setPais(e.target.value)}>
+        <select value={pais} onChange={(e) => setPais(e.target.value)} aria-label="País">
           {paises.map((p) => (
             <option key={p} value={p}>
               {NOMBRES[p] ?? p}
@@ -44,11 +50,12 @@ function App() {
           value={valorInput}
           onChange={(e) => setValorInput(e.target.value)}
           placeholder="Ingresá el número"
+          aria-label="Número de identificación"
         />
         <button type="submit">Verificar</button>
       </form>
       {resultado && (
-        <p className={resultado.valido ? 'ok' : 'fail'}>
+        <p className={resultado.valido ? 'ok' : 'fail'} aria-live="polite">
           {resultado.mensaje ?? resultado.error}
         </p>
       )}
